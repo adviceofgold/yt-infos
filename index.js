@@ -21,7 +21,6 @@ app.get('/', async function(req, res) {
     var json =[];
     var tmp =[];
     var jsonData = "";
-    JSONObject jsonObject = new JSONObject();
     //url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
     var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {

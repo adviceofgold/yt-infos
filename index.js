@@ -25,11 +25,11 @@ app.get('/', async function(req, res) {
           if(!error) {
             $ = cheerio.load(html);
             channelId = $('meta[itemprop="channelId"]').attr('content');
-            playlistId = $('script[32]').html();
+            playlistId = $('script:nth-child(37)').html();
 	   // playlistId = JSON.parse($('script[32]').textContent);
             //playlistId = $('script[32]').split('{"url":"/playlist?list=')[1].split('\u0026playnext', 1)[0].split('"', 1)[0];
 	    //playlistId = $('div[id="play-button"] > ytd-button-renderer > a').attr('href');
-		  
+		   script:nth-child(37)
 	    // playlistId = $('#play-button > ytd-button-renderer > a').attr('href');
             //Subscribers = $('#subscriber-count').attr('aria-label').split(" ")[0];
             //Subscribers = $('#subscriber-count').text();

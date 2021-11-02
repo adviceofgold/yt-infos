@@ -33,7 +33,7 @@ app.get('/', async function(req, res) {
 	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
       	    jsonData = JSON.stringify($('body > script:nth-child(16)').html().substring(21).replace(';',''));
-	    tmp = $.parseJSON(jsonData);
+	    tmp = jQuery.parseJSON(jsonData);
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
 	    playlistId = jsonData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;
 //var findAndClean = findTextAndReturnRemainder(text,"var foo =");

@@ -28,10 +28,10 @@ app.get('/', async function(req, res) {
 	    //playlistId = $('script').get()[14].children[0].data; 
 	    //playlistId = ($.match(/ytInitialData[^{]*(.*?);\s*<\/script>/s))[1];
             //playlistId = $('body > script').text();
-	    //var tmp = JSON.parse($('body > script:nth-child(16)').html());
-	    playlistId = $('body > script:nth-child(16)').html();
+	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
-  
+      let jsonData = JSON.stringify($('body > script:nth-child(16)').html().substring(21,-1));
+
 //var findAndClean = findTextAndReturnRemainder(text,"var foo =");
 //var result = JSON.parse(findAndClean);
             //playlistId = $('script[32]').split('{"url":"/playlist?list=')[1].split('\u0026playnext', 1)[0].split('"', 1)[0];

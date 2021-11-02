@@ -19,7 +19,7 @@ app.get('/', async function(req, res) {
     var Subscribers="";
     var countVideos="";
     var json =[];
-    var jsonData;
+    var jsonData = "";
     //url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
     var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {

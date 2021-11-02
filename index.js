@@ -8,29 +8,36 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
   next();
 });
-app.get('/', async function(req, res) 
-{
+app.get('/', async function(req, res) {
+    //var queryString = window.location.search;
+    //var url = new URLSearchParams(queryString).get('q');
+    var query = req.query.q;
+    var url = decodeURIComponent(query);
     var prediction="";
     var channelId="";
     var playlistId="";
     var Subscribers="";
     var countVideos="";
     var json =[];
-      url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
-      var data = await new Promise(function (resolve, reject){
+    //url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
+    var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {
           if(!error) {
             $ = cheerio.load(html);
             channelId = $('meta[itemprop="channelId"]').attr('content');
-            //prediction = $('div.main-horoscope > p').text();
+			      playlistId = $('div[id="play-button"] > a').attr('href');
+			      Subscribers = $('[id="subscriber-count"]').text();
             resolve({
                 channelId: channelId,
+                playlistId: playlistId,
+				      	Subscribers: Subscribers,
+				      //	countVideos: countVideos,
             });
           }else{
             reject(undefined);
           }
         });
-      });
+    });
       json.push(data);
   res.send(json);
 });

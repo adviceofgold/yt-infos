@@ -25,13 +25,15 @@ app.get('/', async function(req, res) {
           if(!error) {
             $ = cheerio.load(html);
             channelId = $('meta[itemprop="channelId"]').attr('content');
-			      playlistId = $('div[id="play-button"] > a').attr('href');
-			      Subscribers = $('[id="subscriber-count"]').text();
+	   // playlistId = $('div[id="play-button"] > a').attr('href').text();
+	    playlistId = $('#play-button > ytd-button-renderer > a').attr('href');
+            Subscribers = $('#subscriber-count').attr('aria-label').split(" ")[0];
+            //Subscribers = $('#subscriber-count').text();
             resolve({
                 channelId: channelId,
                 playlistId: playlistId,
-				      	Subscribers: Subscribers,
-				      //	countVideos: countVideos,
+		Subscribers: Subscribers,
+		//countVideos: countVideos,
             });
           }else{
             reject(undefined);

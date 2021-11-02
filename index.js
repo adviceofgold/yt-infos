@@ -11,21 +11,20 @@ app.use(function (req, res, next) {
 app.get('/', async function(req, res) 
 {
     var prediction="";
-    
-    var horoscope = ["none","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
-    let arr = ["null","Mar 21 – Apr 20","Apr 21 – May 21","May 22 – Jun 21","Jun 22 – Jul 23","Jul 24 – Aug 23","Aug 24 – Sep 23","Sep 24 – Oct 23","Oct 24 – Nov 22","Nov 23 – Dec 21","Dec 22 – Jan 20","Jan 21 – Feb 19","Feb 20 – Mar 20"];
+    var channelId="";
+    var playlistId="";
+    var Subscribers="";
+    var countVideos="";
     var json =[];
-    for(id=1;id<13;id++){
-      url = 'https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign='+id;
+      url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
       var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {
           if(!error) {
             $ = cheerio.load(html);
-            prediction = $('div.main-horoscope > p').text();
+            channelId = $('meta[itemprop="channelId"]').attr('content');
+            //prediction = $('div.main-horoscope > p').text();
             resolve({
-                id: arr[id],
-                horoscope: horoscope[id],
-                prediction: prediction,
+                channelId: channelId,
             });
           }else{
             reject(undefined);
@@ -33,7 +32,6 @@ app.get('/', async function(req, res)
         });
       });
       json.push(data);
-    }  
   res.send(json);
 });
 app.listen(process.env.PORT || 80);

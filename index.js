@@ -19,7 +19,7 @@ app.get('/', async function(req, res) {
     var Subscribers="";
     var countVideos="";
     var json =[];
-    var jsonData = "";
+    let jsonData;
     //url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
     var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {
@@ -31,7 +31,7 @@ app.get('/', async function(req, res) {
             //playlistId = $('body > script').text();
 	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
-      	    jsonData = eval($('body > script:nth-child(16)').html().substring(21).replace(';',''));
+      	    const jsonData = JSON.parse($('body > script:nth-child(16)').html().substring(21).replace(';',''));
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
 	    playlistId = jsonData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;
 //var findAndClean = findTextAndReturnRemainder(text,"var foo =");

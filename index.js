@@ -32,7 +32,7 @@ app.get('/', async function(req, res) {
             //playlistId = $('body > script').text();
 	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
-      	    jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
+      	    jsonData = JSON.stringify($('body > script:nth-child(16)').html().substring(21).replace(';',''));
 	    tmp = $.parseJSON(jsonData);
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
 	    playlistId = tmp.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;

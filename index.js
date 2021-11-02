@@ -8,43 +8,33 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
   next();
 });
-app.get('/', async function(req, res) {
-    var channelId="";
-    var playlistId="";
-    var Subscribers="";
-    var countVideos="";
+app.get('/', async function(req, res) 
+{
+    var prediction="";
+    
+    var horoscope = ["none","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+    let arr = ["null","Mar 21 – Apr 20","Apr 21 – May 21","May 22 – Jun 21","Jun 22 – Jul 23","Jul 24 – Aug 23","Aug 24 – Sep 23","Sep 24 – Oct 23","Oct 24 – Nov 22","Nov 23 – Dec 21","Dec 22 – Jan 20","Jan 21 – Feb 19","Feb 20 – Mar 20"];
     var json =[];
-    url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
-	var data = await new Promise(function (resolve, reject){
-		request(url, function(error, response, html) {
+    for(id=1;id<13;id++){
+      url = 'https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign='+id;
+      var data = await new Promise(function (resolve, reject){
+        request(url, function(error, response, html) {
           if(!error) {
             $ = cheerio.load(html);
-			channelId = $('meta[itemprop="channelId"]').attr('content');
-			playlistId = $('div[id="play-button"] > a').attr('href');
-			Subscribers = $('[id="subscriber-count"]').text();
-			request(playlistId, function(error, response, html) {
-				if(!error) {
-					$ = cheerio.load(html);
-					countVideos = $('#publisher-container > div > yt-formatted-string > span:nth-child(3)').text();
-				}else{
-					reject(undefined);
-				}
-				resolve({
-					channelId: channelId,
-					playlistId: playlistId,
-					Subscribers: Subscribers,
-					countVideos: countVideos,
-				});	
-				
-			});
+            prediction = $('div.main-horoscope > p').text();
+            resolve({
+                id: arr[id],
+                horoscope: horoscope[id],
+                prediction: prediction,
+            });
           }else{
             reject(undefined);
           }
         });
-    });
-    json.push(data);
-
+      });
+      json.push(data);
+    }  
   res.send(json);
 });
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 80);
 module.exports = app;

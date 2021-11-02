@@ -20,7 +20,7 @@ app.get('/', async function(req, res) {
     var countVideos="";
     var json =[];
     var tmp;
-    var jsonData = "";
+    var jsonData;
     //url = 'https://www.youtube.com/channel/UCdMlRsMbFEqN5JtiF4kSX6g';
     var data = await new Promise(function (resolve, reject){
         request(url, function(error, response, html) {
@@ -32,10 +32,10 @@ app.get('/', async function(req, res) {
             //playlistId = $('body > script').text();
 	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
-      	    playlistId = $('body > script:nth-child(16)').html().substring(21).replace(';','');
-	    //tmp = jQuery.parseJSON(jsonData);
+      	    tmp = $('body > script:nth-child(16)').html().substring(21).replace(';','');
+	    jsonData = JSON.parse(tmp);
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
-	    //playlistId = jsonData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;
+	    playlistId = jsonData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;
 //var findAndClean = findTextAndReturnRemainder(text,"var foo =");
 //var result = JSON.parse(findAndClean);
             //playlistId = $('script[32]').split('{"url":"/playlist?list=')[1].split('\u0026playnext', 1)[0].split('"', 1)[0];

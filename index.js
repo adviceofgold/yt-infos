@@ -29,7 +29,7 @@ app.get('/', async function(req, res) {
 	    //playlistId = ($.match(/ytInitialData[^{]*(.*?);\s*<\/script>/s))[1];
             //playlistId = $('body > script').text();
 	    //var tmp = JSON.parse($('body > script:nth-child(16)').html());
-	    playlistId = JSON.parse($('body > script:nth-child(16)').html());
+	    playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
   
 //var findAndClean = findTextAndReturnRemainder(text,"var foo =");

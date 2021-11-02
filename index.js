@@ -28,7 +28,9 @@ app.get('/', async function(req, res) {
 	    //playlistId = $('script').get()[14].children[0].data; 
 	    //playlistId = ($.match(/ytInitialData[^{]*(.*?);\s*<\/script>/s))[1];
             //playlistId = $('body > script').text();
-	    playlistId = $('script[32]').text();
+	    playlistId = $($('script[32]')).text();
+//var findAndClean = findTextAndReturnRemainder(text,"var foo =");
+//var result = JSON.parse(findAndClean);
             //playlistId = $('script[32]').split('{"url":"/playlist?list=')[1].split('\u0026playnext', 1)[0].split('"', 1)[0];
 	    //playlistId = $('div[id="play-button"] > ytd-button-renderer > a').attr('href');
 	    // playlistId = $('#play-button > ytd-button-renderer > a').attr('href');

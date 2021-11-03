@@ -30,7 +30,7 @@ app.get('/', async function(req, res) {
 	    //playlistId = $('body > script:nth-child(16)').html();
 	    //playlistId = JSON.stringify(JSON.parse(playlist),null,2);  
       	    //tmp = $('body > script:nth-child(16)').html().substring(21).replace(';','');
-      	    tmp = $('body > script:nth-child(16)').html();
+      	    tmp = $('body > script:nth-child(16)').html().toString();
 	    const matchX = tmp.match(/var ytInitialData = (.*);/);
 	    //const jsonData = JSON.parse(matchX[1]);
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');

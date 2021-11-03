@@ -32,11 +32,11 @@ app.get('/', async function(req, res) {
       	    //tmp = $('body > script:nth-child(16)').html().substring(21).replace(';','');
       	    tmp = $('body > script:nth-child(16)').html();
 	    const matchX = tmp.match(/var ytInitialData = (.*);/);
-	    const jsonData = JSON.parse(matchX[1]);
+	    //const jsonData = JSON.parse(matchX[1]);
       	    //jsonData = $('body > script:nth-child(16)').html().substring(21).replace(';','');
 	    //playlistId = jsonData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contants[0].itemSectionRenderer.contents[0].shelfRender.playAllButton.buttonRender.navigationEndpoint.watchEndpoint.playlistId;
-	    playlistId = jsonData["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][0]["tabRenderer"]["content"]["sectionListRenderer"]["contants"][0]["itemSectionRenderer"]["contents"][0]["shelfRender"]["playAllButton"]["buttonRender"]["navigationEndpoint"]["watchEndpoint"]["playlistId"];
-
+	    //playlistId = jsonData["contents"]["twoColumnBrowseResultsRenderer"]["tabs"][0]["tabRenderer"]["content"]["sectionListRenderer"]["contants"][0]["itemSectionRenderer"]["contents"][0]["shelfRender"]["playAllButton"]["buttonRender"]["navigationEndpoint"]["watchEndpoint"]["playlistId"];
+		playlistId = matchX[1];
 	    //playlistId = $('script[32]').split('{"url":"/playlist?list=')[1].split('\u0026playnext', 1)[0].split('"', 1)[0];
 	    //playlistId = $('div[id="play-button"] > ytd-button-renderer > a').attr('href');
 	    // playlistId = $('#play-button > ytd-button-renderer > a').attr('href');

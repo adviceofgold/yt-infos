@@ -26,7 +26,7 @@ app.get('/', async function(req, res) {
             $ = cheerio.load(html);
             channelId = $('meta[itemprop="channelId"]').attr('content');
 		  
-	    playlistId = ($('body > script:nth-child(16)').html().match(/ytInitialData[^{]*(.*?);\s*<\/script>/s))[1];
+	    playlistId = $('body > script:nth-child(16)').html().match(/ytInitialData[^{]*(.*?);\s*<\/script>/s)[1];
       	    //tmp = $('body > script:nth-child(16)').html().substring(21).replace(';','');
       	    //tmp = $('body > script:nth-child(16)').html().toString();
 	    //const matchX = tmp.match(/var ytInitialData = (.*);/);

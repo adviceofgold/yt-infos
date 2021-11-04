@@ -1,7 +1,6 @@
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
-//const scraper = require('./scrapper')
 const app = express();
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

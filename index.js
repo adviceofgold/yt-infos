@@ -1,7 +1,7 @@
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
-//const scraper = require('./scraper')
+//const scraper = require('./scrapper')
 const app = express();
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,7 +27,7 @@ app.get('/', async function(req, res) {
             channelId = $('meta[itemprop="channelId"]').attr('content');
 		  
 	    //playlistId = $('body > script:nth-child(16)').html().match(/ytInitialData[^{]*(.*?);\s*<\/script>/s)[1];
-      	    playlistId = $('body > script:nth-child(16)').html().substring(21).replace(';','');
+      	    //playlistId = $('body > script:nth-child(16)').html().substring(21).replace(';','');
       	    //tmp = $('body > script:nth-child(16)').html().toString();
 	    //const matchX = tmp.match(/var ytInitialData = (.*);/);
 	    //const jsonData = JSON.parse(matchX[1]);
@@ -42,7 +42,7 @@ app.get('/', async function(req, res) {
             //Subscribers = $('#subscriber-count').text();
             resolve({
                 channelId: channelId,
-                playlistId: playlistId,
+                //playlistId: playlistId,
 		//Subscribers: Subscribers,
 		//countVideos: countVideos,
             });
